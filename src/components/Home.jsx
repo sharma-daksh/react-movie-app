@@ -1,7 +1,60 @@
-import React from 'react';
+import React,{useEffect, useRef} from 'react';
 import bgImage from './bg.movierealm.jpg';
+import '../App.css'
 
 function Home() {
+
+  const containerRef=useRef(null)
+
+  useEffect(()=>{
+    const container =containerRef.current;
+    container.innerHTML='';
+
+    for (let i = 0; i < 100; i++) {
+      let dots = document.createElement('div');
+      dots.classList.add("element")
+      container.appendChild(dots)     
+    }
+
+    let dotsAll =container.querySelectorAll('.element')
+    let animation =anime.timeline({
+      targets:dotsAll,
+      easing: 'easeInOutExpo',
+      loop:true,
+      delay: anime.stagger(100,{grid:[10,10],from:'center'})
+    })
+
+    animation.add({
+      rotateZ:180,
+      translateY:anime.stagger(0,{grid:[10,10],from:'center',axis:'y'}),
+      translateX:anime.stagger(0,{grid:[10,10],from:'center',axis:'x'}),
+      opacity:1,
+    })
+    .add({
+      borderRadius:50,
+    })
+    .add({
+      scale:0.2,
+      opacity:0.2,
+    })
+    .add({
+      rotateZ:180,
+      translateY:anime.stagger(0,{grid:[10,10],from:'center',axis:'y'}),
+      translateX:anime.stagger(0,{grid:[10,10],from:'center',axis:'x'}),
+      opacity:1,
+    })
+    .add({
+      scale:1,
+      borderRadius:0,
+    })
+    .add({
+      rotateZ:-90,
+    })
+
+
+
+  },[])
+
   return (
     <div
       className="min-h-screen bg-cover bg-center bg-no-repeat text-white flex items-center justify-center py-10 relative" // Added relative positioning
@@ -24,6 +77,11 @@ function Home() {
         >
           Start Exploring
         </a>
+      </div>
+      {/* animejs */}
+      <div className="container" ref={containerRef}>
+      Fuck you
+
       </div>
     </div>
   );

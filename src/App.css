@@ -1,1 +1,19 @@
- 
+.element{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: rgb(188, 255, 188);
+    scale: 0.75;
+    
+}
+.container{
+    right: 100px;
+    position: relative;
+    height: 400px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    min-width: 400px;
+    align-items: center;
+    flex-wrap: wrap;
+}
